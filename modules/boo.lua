@@ -1,3 +1,3 @@
 function boo()
-    print('boo')
+    print('Q')
 end
