@@ -49,3 +49,13 @@ function CPlatoon:MoveToLocation(position, useTransports, [squad])
 end
 
 ['move'] = {action = 'StartCommandMode order RULEUCC_Move',
+
+
+--- Returns elevation at given position.
+-- Ignores water surface.
+-- @param x Position on x axis.
+-- @param z Position on x axis.
+function GetTerrainHeight(x z)
+end
+
+local Y = GetTerrainHeight(point_B[1], point_B[3])
