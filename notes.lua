@@ -29,6 +29,16 @@ end
 function GetValidAttackingUnits()
 end
 
+
+--- Filter a list of units to only those found in the category.
+-- @param category Unit category.
+-- @tblUnits Table containing units, same as group of units.
+-- @return Filtered list of units.
+function EntityCategoryFilterDown(category, tblUnits)
+end
+table.getn(EntityCategoryFilterDown(categories.ENGINEER - categories.POD, units)) > 0
+
+
 --- Orders platoon to move to target position.
 -- If squad is specified, moves only the squad.
 -- @param position Table with position {x, y, z}.
@@ -37,3 +47,5 @@ end
 -- @return command
 function CPlatoon:MoveToLocation(position, useTransports, [squad])
 end
+
+['move'] = {action = 'StartCommandMode order RULEUCC_Move',
