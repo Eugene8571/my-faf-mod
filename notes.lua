@@ -39,15 +39,6 @@ end
 table.getn(EntityCategoryFilterDown(categories.ENGINEER - categories.POD, units)) > 0
 
 
---- Orders platoon to move to target position.
--- If squad is specified, moves only the squad.
--- @param position Table with position {x, y, z}.
--- @param useTransports true/false
--- @param [squad] Types: 'Attack', 'Artillery', 'Guard' 'None', 'Scout', 'Support'.
--- @return command
-function CPlatoon:MoveToLocation(position, useTransports, [squad])
-end
-
 ['move'] = {action = 'StartCommandMode order RULEUCC_Move',
 
 
@@ -58,4 +49,14 @@ end
 function GetTerrainHeight(x z)
 end
 
-local Y = GetTerrainHeight(point_B[1], point_B[3])
+
+local CM = import('/lua/ui/game/commandmode.lua')
+local current_command = CM.GetCommandMode()
+local old_selection = GetSelectedUnits() or {}
+
+hidden_select = true
+callback()
+SelectUnits(old_selection)
+CM.StartCommandMode(current_command[1], current_command[2])
+hidden_select = false
+
