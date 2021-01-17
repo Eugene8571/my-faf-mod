@@ -1,6 +1,57 @@
 
 
-local function move_random(waypoint)
+function move_to_point(point_A, point_B)
+
+    local avgPoint = {0,0}
+    avgPoint[1] = avgPoint[1] + point_A[1]
+    avgPoint[2] = avgPoint[2] + point_A[3]
+    
+
+
+    local target_position = point_B
+
+    avgPoint[1] = target_position[1] - avgPoint[1]
+    avgPoint[2] = target_position[3] - avgPoint[2]
+    local rotation = math.atan(avgPoint[1]/avgPoint[2])
+    rotation = rotation * 180 / math.pi
+    if avgPoint[2] < 0 then
+        rotation = rotation + 180
+    end
+
+    local cb = {Func="AttackMove", 
+                Args={
+                    Target=target_position, 
+                    Rotation = rotation, 
+                    Clear=false}}
+
+    SimCallback(cb, true)
+    return target_position    
+end
+
+function to_mass_deposits(waypoint)
+    local selection = GetSelectedUnits()
+    local unit = selection[1]
+
+    if not unit then return print('-') end
+
+    local unit_position = unit:GetPosition()
+    local X, Z, Radius, Type = unit_position[1], unit_position[3], 100, 1
+    local mass_deposits = GetDepositsAroundPoint(X, Z, Radius, Type)
+    local i = 1
+    for j=1,table.getn(mass_deposits) do
+        if mass_deposits[i].Dist > mass_deposits[j].Dist then 
+            i = j
+        end
+    end
+    print(mass_deposits[i].Dist)
+    local point_A
+    if waypoint then point_A = waypoint else point_A = unit_position end
+    local point_B = {mass_deposits[i].X1,point_A[2],mass_deposits[i].Z1}
+    move_to_point(point_A, point_B)
+end
+
+
+local function attack_move_random(waypoint)
     local selection = GetSelectedUnits()
     local unit = selection[1]
 
@@ -41,8 +92,9 @@ end
 
 function smart_engi()
     local waypoint
-    for i=1,2 do
-        waypoint = move_random(waypoint)
-    end
+    -- for i=1,2 do
+    --     waypoint = attack_move_random(waypoint)
+    -- end
+    waypoint = to_mass_deposits(waypoint)
 end
 
