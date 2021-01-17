@@ -36,7 +36,8 @@ end
 
 
 function smart_engi()
-    for i=1,6 do
+    for i=1,2 do
         move_random()
     end
 end
+
