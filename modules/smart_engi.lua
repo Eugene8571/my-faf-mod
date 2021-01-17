@@ -35,19 +35,30 @@ function to_mass_deposits(waypoint)
     if not unit then return print('-') end
 
     local unit_position = unit:GetPosition()
-    local X, Z, Radius, Type = unit_position[1], unit_position[3], 100, 1
+
+    local commandQueue = unit:GetCommandQueue()
+    local n = table.getn(commandQueue)
+
+    local X = commandQueue[n].position[1]
+    local Z = commandQueue[n].position[3]
+    local Radius = 40
+    local Type = 1
+
     local mass_deposits = GetDepositsAroundPoint(X, Z, Radius, Type)
+
     local i = 1
     for j=1,table.getn(mass_deposits) do
         if mass_deposits[i].Dist > mass_deposits[j].Dist then 
             i = j
         end
     end
-    print(mass_deposits[i].Dist)
+
     local point_A
     if waypoint then point_A = waypoint else point_A = unit_position end
-    local point_B = {mass_deposits[i].X1,point_A[2],mass_deposits[i].Z1}
+    local Y = point_A[2]
+    local point_B = {mass_deposits[i].X1,Y,mass_deposits[i].Z1}
     move_to_point(point_A, point_B)
+    return point_B
 end
 
 
@@ -84,8 +95,6 @@ local function attack_move_random(waypoint)
                     Clear=false}}
 
     SimCallback(cb, true)
-    local commandQueue = unit:GetCommandQueue()
-    print(table.getn(commandQueue))
     return target_position
 end
 
