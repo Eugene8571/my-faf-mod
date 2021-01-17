@@ -1,6 +1,6 @@
 
 
-local function move_random()
+local function move_random(waypoint)
     local selection = GetSelectedUnits()
     local unit = selection[1]
 
@@ -9,8 +9,11 @@ local function move_random()
     local avgPoint = {0,0}
     avgPoint[1] = avgPoint[1] + unit:GetPosition()[1]
     avgPoint[2] = avgPoint[2] + unit:GetPosition()[3]
-   
-    local target_position = unit:GetPosition()
+    
+
+
+    local target_position = waypoint
+    if not target_position then target_position = unit:GetPosition() end
     local r = math.random( 0, 360 )
     target_position[1] = target_position[1] + 10*math.sin(r)
     target_position[3] = target_position[3] + 10*math.cos(r)
@@ -32,12 +35,14 @@ local function move_random()
     SimCallback(cb, true)
     local commandQueue = unit:GetCommandQueue()
     print(table.getn(commandQueue))
+    return target_position
 end
 
 
 function smart_engi()
+    local waypoint
     for i=1,2 do
-        move_random()
+        waypoint = move_random(waypoint)
     end
 end
 
