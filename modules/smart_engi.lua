@@ -9,7 +9,6 @@ function move_to_point(point_A, point_B)
 
 
     local target_position = point_B
-
     avgPoint[1] = target_position[1] - avgPoint[1]
     avgPoint[2] = target_position[3] - avgPoint[2]
     local rotation = math.atan(avgPoint[1]/avgPoint[2])
@@ -39,13 +38,13 @@ function to_mass_deposits(waypoint)
     local commandQueue = unit:GetCommandQueue()
     local n = table.getn(commandQueue)
 
-    local X = commandQueue[n].position[1]
-    local Z = commandQueue[n].position[3]
+    local X = commandQueue[n].position[1] or unit_position[1]
+    local Z = commandQueue[n].position[3] or unit_position[3]
     local Radius = 40
     local Type = 1
 
     local mass_deposits = GetDepositsAroundPoint(X, Z, Radius, Type)
-
+    -- print(mass_deposits[1])
     local i = 1
     for j=1,table.getn(mass_deposits) do
         if mass_deposits[i].Dist > mass_deposits[j].Dist then 
@@ -56,7 +55,8 @@ function to_mass_deposits(waypoint)
     local point_A
     if waypoint then point_A = waypoint else point_A = unit_position end
     local Y = point_A[2]
-    local point_B = {mass_deposits[i].X1,Y,mass_deposits[i].Z1}
+    local point_B = {mass_deposits[i].X2,Y,mass_deposits[i].Z2}
+    -- print(point_B[1], point_B[3])
     move_to_point(point_A, point_B)
     return point_B
 end
@@ -74,8 +74,7 @@ local function attack_move_random(waypoint)
     
 
 
-    local target_position = waypoint
-    if not target_position then target_position = unit:GetPosition() end
+    local target_position = waypoint or unit:GetPosition()
     local r = math.random( 0, 360 )
     target_position[1] = target_position[1] + 10*math.sin(r)
     target_position[3] = target_position[3] + 10*math.cos(r)
@@ -98,12 +97,12 @@ local function attack_move_random(waypoint)
     return target_position
 end
 
+BMex = import("/mods/my-faf-mod/modules/build_mex.lua")
 
 function smart_engi()
     local waypoint
-    -- for i=1,2 do
-    --     waypoint = attack_move_random(waypoint)
-    -- end
+    waypoint = attack_move_random(waypoint)
     waypoint = to_mass_deposits(waypoint)
+    BMex.build_mex(waypoint)
 end
 
