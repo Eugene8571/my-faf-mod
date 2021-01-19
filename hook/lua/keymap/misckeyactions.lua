@@ -1,7 +1,5 @@
 local KeyMapper = import('/lua/keymap/keymapper.lua')
 
-L = import("/mods/my-faf-mod/modules/boo.lua")
-
 function say_hi(S)
     print(S)
 end
