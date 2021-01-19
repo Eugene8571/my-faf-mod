@@ -39,6 +39,18 @@ end
 table.getn(EntityCategoryFilterDown(categories.ENGINEER - categories.POD, units)) > 0
 
 
+--- Orders a group of engineers to build a unit at target position.
+-- Example: IssueBuildMobile({builder}, Vector(pos.x, pos.y, pos.z-2), msid, {}).
+-- @param tblUnits Table containing engineers.
+-- @param position Table with position {x, y, z}.
+-- @param blueprintID ID of the unit to build, example: 'ueb0103'.
+-- @param table (Two element table - TODO: find out what it is) or empty table.
+-- @return Returns the issued command.
+function IssueBuildMobile(tblUnits, position, blueprintID, table)
+end
+
+
+
 ['move'] = {action = 'StartCommandMode order RULEUCC_Move'}
 
 
@@ -109,3 +121,37 @@ elseif factionIndex == 4 then
     resourceStructures = {'XSB1103', 'XSB1103', 'XSB1103', 'XSB1103'}
     initialUnits = {'XSB0101', 'XSB1101', 'XSB1101', 'XSB1101', 'XSB1101'}
 end
+
+
+
+--- вызывает критическую ошибку.
+Callbacks.BuildMex = function(position, units)
+    print(' SimCallback BuildMex')
+    -- local units = EntityCategoryFilterDown(categories.ENGINEER, units)
+    if not units[1] then return end
+    -- print('eng in')
+    -- local mex = GetEntityById(data.target)
+    -- if not mex or not EntityCategoryContains(categories.MASSEXTRACTION * categories.STRUCTURE, mex) then return end
+
+    -- if mex:GetCurrentLayer() == 'Seabed' then return end
+
+    -- local pos = mex:GetPosition()
+    local msid = LetterArray[units[1]:GetBlueprint().General.FactionName]..'b1103'
+    local builder = units[1]
+
+    -- for _, unit in units do
+    --     msid = LetterArray[unit:GetBlueprint().General.FactionName]..'b1103' -- The identity of the storage we'll build
+    --     if unit:CanBuild(msid) then
+    --         builder = unit
+    --         break
+    --     end
+    -- end
+
+    if not builder then return end
+
+    local location = Vector(position[1],position[2],position[3])
+    IssueBuildMobile({builder}, location, msid, {})
+
+    IssueGuard(units, builder)
+end
+
