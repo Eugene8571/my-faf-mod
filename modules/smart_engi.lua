@@ -55,9 +55,10 @@ function to_mass_deposits(waypoint)
     local point_A
     if waypoint then point_A = waypoint else point_A = unit_position end
     local Y = point_A[2]
-    local point_B = {mass_deposits[i].X2,Y,mass_deposits[i].Z2}
-    -- print(point_B[1], point_B[3])
+    local point_B = {mass_deposits[i].X2-0.5,Y,mass_deposits[i].Z2-0.5}
+    print(point_B[1], point_B[3])
     move_to_point(point_A, point_B)
+
     return point_B
 end
 
@@ -99,10 +100,10 @@ end
 
 BMex = import("/mods/my-faf-mod/modules/build_mex.lua")
 
-function smart_engi()
+function testMove()
     local waypoint
-    waypoint = attack_move_random(waypoint)
+    -- waypoint = attack_move_random(waypoint)
     waypoint = to_mass_deposits(waypoint)
-    BMex.build_mex(waypoint)
+    -- BMex.build_mex()
 end
 
