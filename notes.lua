@@ -1,8 +1,10 @@
 function UpdatePrioState()
     local units = currentSelection
+end
+
+--[[
 
 GetCommandQueue
-
 local idleEngineers = GetIdleEngineers()
 
 
@@ -36,7 +38,7 @@ end
 -- @return Filtered list of units.
 function EntityCategoryFilterDown(category, tblUnits)
 end
-table.getn(EntityCategoryFilterDown(categories.ENGINEER - categories.POD, units)) > 0
+table.getn(EntityCategoryFilterDown(categories.ENGINEER - categories.POD, units))
 
 
 --- Orders a group of engineers to build a unit at target position.
@@ -50,22 +52,20 @@ function IssueBuildMobile(tblUnits, position, blueprintID, table)
 end
 
 
-
 ['move'] = {action = 'StartCommandMode order RULEUCC_Move'}
-
 
 --- Returns elevation at given position.
 -- Ignores water surface.
 -- @param x Position on x axis.
 -- @param z Position on x axis.
-function GetTerrainHeight(x z)
+function GetTerrainHeight(x, z)
 end
 
 
 
---[[
 \schook\lua\ui\game\selection.lua
-]]
+
+
 local hidden_select = false
 function IsHidden()
     return hidden_select == true
@@ -157,4 +157,5 @@ end
 
 
 
-table.sort(onScreenReclaims, function(a, b) return a.mass > b.mass end)
+-- table.sort(onScreenReclaims, function(a, b) return a.mass > b.mass end)
+]]

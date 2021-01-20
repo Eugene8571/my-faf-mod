@@ -109,7 +109,8 @@ BMex = import("/mods/my-faf-mod/modules/build_mex.lua")
 -- Reclaimables = import('/lua/sim/Unit.lua').Unit.Reclaimables
 -- Reclaimables = import('/lua/SimUtils.lua').Reclaimables
 
-ToReclaimables = import('/lua/ui/game/reclaim.lua').ToReclaimables
+-- ToReclaimables = import('/lua/ui/game/reclaim.lua').ToReclaimables
+ToReclaimables = import('/mods/my-faf-mod/modules/reclaim_grid.lua').ToReclaimables
 function testMove()
     local waypoint
     -- for i=1,5 do
@@ -121,7 +122,8 @@ function testMove()
     -- point_B = waypoint
     -- point_B[1] = waypoint[1] + 10
     -- waypoint = move_to_point(waypoint, point_B)
-    mass = ToReclaimables(waypoint)
-    print('qwe', mass)
+    local r = ToReclaimables(waypoint)
+    print('qwe', r.mass)
+    waypoint = move_to_point(waypoint, r.position)
 end
 

@@ -37,6 +37,15 @@ function mass_grid(L,N, location)
 end
 
 
+
+function ToReclaimables(waypoint)
+    local Reclaim = import('/lua/ui/game/reclaim.lua').GetReclaimList()
+    if not Reclaim then return end
+    for _,r in Reclaim do
+        return r 
+    end
+end
+
 -- local example_grid = {
 --     {5,0,5},
 --     {5,0,15},
@@ -51,4 +60,5 @@ end
 -- for i=1,#grid do
 --     print(grid[i][2])
 -- end
+
 
