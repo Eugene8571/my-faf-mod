@@ -1,6 +1,11 @@
 
 
 function move_to_point(point_A, point_B)
+    local selection = GetSelectedUnits()
+    local unit = selection[1]
+    if not unit then return print('-') end
+    local unit_position = unit:GetPosition()
+    if not point_A then point_A = unit_position end
 
     local avgPoint = {0,0}
     avgPoint[1] = avgPoint[1] + point_A[1]
@@ -37,9 +42,9 @@ function to_mass_deposits(waypoint)
 
     local commandQueue = unit:GetCommandQueue()
     local n = table.getn(commandQueue)
-
-    local X = commandQueue[n].position[1] or unit_position[1]
-    local Z = commandQueue[n].position[3] or unit_position[3]
+    if not waypoint then waypoint = unit_position end
+    local X = waypoint[1] --or commandQueue[n].position[1]
+    local Z = waypoint[3] --or commandQueue[n].position[3]
     local Radius = 40
     local Type = 1
 
@@ -102,8 +107,15 @@ BMex = import("/mods/my-faf-mod/modules/build_mex.lua")
 
 function testMove()
     local waypoint
-    -- waypoint = attack_move_random(waypoint)
-    waypoint = to_mass_deposits(waypoint)
+    -- for i=1,5 do
+    --     waypoint = attack_move_random(waypoint)
+    -- end
+    -- waypoint = to_mass_deposits(waypoint)
     -- BMex.build_mex()
+    waypoint = attack_move_random(waypoint)
+    point_B = waypoint
+    point_B[1] = waypoint[1] + 10
+    waypoint = move_to_point(waypoint, point_B)
+
 end
 

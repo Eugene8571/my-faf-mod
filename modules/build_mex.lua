@@ -43,7 +43,6 @@ function build_mex()
     -- }
     local Position = pos
     local Blueprint = 'ueb1103'
-    print('Bom')
     
     AddCommandFeedbackBlip({
         Position = Position,
@@ -52,6 +51,7 @@ function build_mex()
         ShaderName = 'CommandFeedback',
         UniformScale = 1,
     }, 0.7)
+    print('Bom')
 
     -- IssueGuard(units, builder)
 end
