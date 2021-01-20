@@ -104,7 +104,11 @@ local function attack_move_random(waypoint)
 end
 
 BMex = import("/mods/my-faf-mod/modules/build_mex.lua")
+-- reclaim_grid = import("/mods/my-faf-mod/modules/reclaim_grid.lua")
+-- Reclaimables = import('/lua/sim/Unit.lua').Unit.Reclaimables
+-- Reclaimables = import('/lua/SimUtils.lua').Reclaimables
 
+ToReclaimables = import('/lua/ui/game/reclaim.lua').ToReclaimables
 function testMove()
     local waypoint
     -- for i=1,5 do
@@ -113,9 +117,10 @@ function testMove()
     -- waypoint = to_mass_deposits(waypoint)
     -- BMex.build_mex()
     waypoint = attack_move_random(waypoint)
-    point_B = waypoint
-    point_B[1] = waypoint[1] + 10
-    waypoint = move_to_point(waypoint, point_B)
-
+    -- point_B = waypoint
+    -- point_B[1] = waypoint[1] + 10
+    -- waypoint = move_to_point(waypoint, point_B)
+    mass = ToReclaimables(waypoint)
+    print('qwe', mass)
 end
 

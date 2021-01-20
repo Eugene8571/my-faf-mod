@@ -1,8 +1,6 @@
 
 
 function build_mex()
-    return 
-    -- build mex if it possible
     local units = EntityCategoryFilterDown(categories.ENGINEER, GetSelectedUnits())
     if not units[1] then return end
     -- local mex = GetEntityById(data.target)

@@ -12,10 +12,10 @@ mass
 
 ]]
 
-local function mass_grid(L,N, location)
-    if N % 2 ~= 0 then
-        N = N + 1 
-    end
+function mass_grid(L,N, location)
+    -- if N % 2 ~= 0 then
+    --     N = N + 1 
+    -- end
     local x,y
     -- local pos = location
     local grid = {}
@@ -36,17 +36,19 @@ local function mass_grid(L,N, location)
     return grid    
 end
 
-local example_grid = {
-    {5,0,5},
-    {5,0,15},
-    {15,0,5},
-    {15,0,15}
-}
--- print(example_grid[1][1],example_grid[1][2],example_grid[1][3])
--- require 'pl.pretty'.dump(example_grid)
 
-grid = mass_grid(10,2, {10,0,10})
--- require 'pl.pretty'.dump(grid)
-for i=1,#grid do
-    print(grid[i][2])
-end
+-- local example_grid = {
+--     {5,0,5},
+--     {5,0,15},
+--     {15,0,5},
+--     {15,0,15}
+-- }
+-- -- print(example_grid[1][1],example_grid[1][2],example_grid[1][3])
+-- -- require 'pl.pretty'.dump(example_grid)
+
+-- grid = mass_grid(10,4, {10,0,10})
+-- -- require 'pl.pretty'.dump(grid)
+-- for i=1,#grid do
+--     print(grid[i][2])
+-- end
+

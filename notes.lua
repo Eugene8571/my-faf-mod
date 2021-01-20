@@ -155,3 +155,6 @@ Callbacks.BuildMex = function(position, units)
     IssueGuard(units, builder)
 end
 
+
+
+table.sort(onScreenReclaims, function(a, b) return a.mass > b.mass end)
