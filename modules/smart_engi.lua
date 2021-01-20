@@ -1,6 +1,7 @@
 
 
 function move_to_point(point_A, point_B)
+    if not point_B then return end
     local selection = GetSelectedUnits()
     local unit = selection[1]
     if not unit then return print('-') end
