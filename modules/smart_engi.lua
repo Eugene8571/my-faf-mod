@@ -44,7 +44,6 @@ function to_mass_deposits(waypoint)
     local Type = 1
 
     local mass_deposits = GetDepositsAroundPoint(X, Z, Radius, Type)
-    -- print(mass_deposits[1])
     local i = 1
     for j=1,table.getn(mass_deposits) do
         if mass_deposits[i].Dist > mass_deposits[j].Dist then 
@@ -56,7 +55,6 @@ function to_mass_deposits(waypoint)
     if waypoint then point_A = waypoint else point_A = unit_position end
     local Y = point_A[2]
     local point_B = {mass_deposits[i].X2,Y,mass_deposits[i].Z2}
-    -- print(point_B[1], point_B[3])
     move_to_point(point_A, point_B)
     return point_B
 end
@@ -97,12 +95,9 @@ local function attack_move_random(waypoint)
     return target_position
 end
 
-BMex = import("/mods/my-faf-mod/modules/build_mex.lua")
-
 function smart_engi()
     local waypoint
     waypoint = attack_move_random(waypoint)
     waypoint = to_mass_deposits(waypoint)
-    BMex.build_mex(waypoint)
 end
 
