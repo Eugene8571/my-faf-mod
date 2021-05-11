@@ -159,3 +159,103 @@ end
 
 -- table.sort(onScreenReclaims, function(a, b) return a.mass > b.mass end)
 ]]
+
+
+-- command
+
+{
+    ["Clear"]=true,
+    ["CommandType"]="Move",
+    ["Target"]={
+        ["Type"]="Position",
+        ["Position"]={"84.476089477539","25.4921875","37.064846038818"}
+    },
+    ["Blueprint"]="",
+    ["Units"]={
+        {
+        ["_c_object"]="userdata: CScriptObject* at 1DE31BDC = [CScriptObject at 0x21A0E000]"}
+    }
+}
+
+
+{
+    ["Clear"]=true,
+    ["CommandType"]="None",
+    ["Target"]={
+        ["Type"]="None",
+        ["Position"]={"0","0","0"}
+    },["Blueprint"]="",
+    ["Units"]={
+        {
+        ["_c_object"]="userdata: CScriptObject* at 1DE31BDC = [CScriptObject at 0x21A0E000]"}
+    }
+}
+
+{
+    ["Clear"]=true,
+    ["CommandType"]="Guard",
+    ["Target"]={
+        ["Type"]="Position",
+        ["Position"]={"88.5","25.4921875","38.5"}
+    },
+    ["Blueprint"]="ueb1202",
+    ["Units"]=}
+}
+
+{
+    ["Clear"]=true,
+    ["CommandType"]="BuildMobile",
+    ["Target"]={
+        ["Type"]="Position",
+        ["Position"]={"110.5","25.501953125","25.5"}
+    },
+    ["Blueprint"]="ueb0101",
+    ["Units"]={
+        {
+        ["_c_object"]="userdata: CScriptObject* at 1B65D0D8 = [CScriptObject at 0x22787000]"}
+    }
+}
+
+
+
+bueld mex
+{
+    ["Clear"]=true,
+    ["CommandType"]="BuildMobile",
+    ["Target"]={
+        ["Type"]="Position",
+        ["Position"]={"110.5","25.46484375","33.5"}
+    },
+    ["Blueprint"]="ueb1103",
+    ["Units"]={{["_c_object"]="userdata: CScriptObject* at 1B65D0D8 = [CScriptObject at 0x22787000]"}}}
+
+
+{["Clear"]=true,["CommandType"]="None",["Target"]={["Type"]="None",["Position"]={"0","0","0"}},["Blueprint"]="",["Units"]={{["_c_object"]="userdata: CScriptObject* at 1B65D0D8 = [CScriptObject at 0x22787000]"}}}
+
+
+
+
+
+
+
+
+
+
+INFO: {
+["OverCharge"]="OverCharge",
+["Move"]="Move",
+["Patrol"]="Patrol",
+["FormMove"]="Move",
+["FormAttack"]="Attack",
+["FormAggressiveMove"]="AggressiveMove",
+["Nuke"]="Nuke",
+["Tactical"]="Tactical",
+["Repair"]="Repair",["Reclaim"]="Reclaim",["Capture"]="Capture",["FormPatrol"]="Patrol",["AggressiveMove"]="AggressiveMove",["Guard"]="Guard",["Attack"]="Attack"}
+
+
+
+    command.CommandType = "BuildMobile"
+    command.Target.Type = 'Position'
+    command.Position = {108.5,25.484375,25.5}
+    command.Blueprint= "ueb1101"
+    command.Units = GetSelectedUnits()
